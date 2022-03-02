@@ -26,8 +26,8 @@ const showPhoneDetails = phones =>{
         div.classList.add("col-lg-4");
         div.classList.add("mb-5")
         div.innerHTML = `
-        <div class="card" style="width: 18rem;">
-                <img src="${phone.image}" class="card-img-top" alt="...">
+        <div class="card position-relative" style="width: 18rem;">
+                <img src="${phone.image}" class="card-img-top" alt="..." style="width: 80%;">
                 <div class="card-body">
                 <h4 class="card-title">${phone.phone_name}</h4>
                 <p class="card-text">${phone.brand}</p>
@@ -48,15 +48,27 @@ const detailes=(info)=>{
 
 const setDetailes = info => {
     document.getElementById('main1').innerHTML = `
-    <div class="card custom-width mx-auto mb-5" style="width: 18rem;">
-        <img src="${info.image}" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h4 class="card-title">${info.name}</h4>
-        <p class="card-text">${info.brand}</p>
-        <h6 class="fw-bold fs-5">Core Features</h6>
-        <div><p class="lh-lg"><b>Chipset:</b>${info.chipSet}<br>
-        </div>
-        </div>
+    <div id="device-details" class="custom-width mx-auto mb-5">
+    <div class="card">
+    <img src="${info.image}" class="card-img-top py-5 mx-auto" alt="..." style="width: 30%;">
+    <div class="card-spacing">
+        <h5 class="card-title">${info.name}</h5>
+    </div>
+
+    <p class="card-spacing">ReleaseDate: ${info.releaseDate ? info.releaseDate:'Comming soon'}</p>
+    
+    <div class="card-spacing">
+
+        <h6 class="fw-bold fs-5 ">Core Features</h6>
+        <p class="lh-lg"><b>Chipset:</b> ${info.mainFeatures.chipSet}<br> <b>Memory:</b> ${info.mainFeatures.memory}<br><b>Storage:</b> ${info.mainFeatures.storage}<br><b>Display Size:</b> ${info.mainFeatures.displaySize}<br><b>Sensors:</b> ${info.mainFeatures.sensors}</p>
+
+    </div>
+    <div class="card-spacing">
+        <h6 class="fw-bold fs-5">Other Features</h6>
+        <p class="lh-lg"><b>Network:</b> ${info.others?.WLAN? info.others.WLAN:'no Found'}<br><b>GPS:</b> ${info.others?.GPS? info.others.GPS:'no found'}<br><b>Blutooth:</b> ${info.others?.Bluetooth? info.others.Bluetooth:'no found'}<br><b>USB:</b> ${info.others?.USB? info.others.USB:'no found'}<b><br>NFC:</b> ${info.others?.NFC? info.others.NFC:'no found'}<br><b>Radio:</b> ${info.others?.Radio? info.others.Radio:'no found'}</p>
+
+    </div>
+    </div>
     </div>
     `;
 }
