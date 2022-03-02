@@ -1,12 +1,26 @@
+.body-styles{
+    background-color: aliceblue;
+}
+
+/* .error-text{
+    display: none;
+} */
+
+
 .card-spacing{
     padding: 0% 5% 0% 5%;
 }
 
 .custom-width{
-    width: 50%;
-}
+    width: 40%;
+} 
 .card{
-    align-items: center;
+    /* align-items: center; */
+    display: flex;
+}
+.mx-auto{
+    margin-right: auto!important;
+    margin-left: auto!important;
 }
 
 @media screen and (max-width: 480px){

@@ -1,32 +1,38 @@
 
-const searchBtn = () => {
-    const input = document.getElementById('input-value').value;
-    const url = `https://openapi.programming-hero.com/api/phones?search=${input}`;
-    
-    fetch(url)
-    .then(res => res.json())
-    .then(data => showPhoneDetails(data.data));
-   
 
-    // if(isNaN(inputValue)){
-    //     error.innerText = "No Result Found";
-    //     input.value ="";
-    // } else if(inputValue.length==0){
-    //     error.innerText = "No Result Found";
-    //     input.value= "";
-    //     main.innerHTML="";
-    // } else {
-        
-    // }
+const searchBtn = () => {
+    const parent = document.getElementById('main');
+
+    document.getElementById('main').innerHTML="";
+    document.getElementById('main1').innerHTML="";
+    const input = document.getElementById('input-value');
+    const inputValue = input.value;
+   
+    const errorElement = document.getElementById('error');
+    if (inputValue == "") {
+        errorElement.innerText = "Search Box Is Empty";
+        errorElement.style.display = 'block';
+
+
+    } else {
+        errorElement.style.display = 'none';
+        const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => showPhoneDetails(data.data));
+        errorElement.innerHTML = "";
+
+    }
 }
+
 const showPhoneDetails = phones =>{
-    for(const phone of phones){
+    phones.forEach(phone => {
         const parent = document.getElementById('main')
         const div = document.createElement('div')
         div.classList.add("col-lg-4");
         div.classList.add("mb-5")
         div.innerHTML = `
-        <div class="card">
+        <div class="card mb-5" style="width: 18rem;">
                 <img src="${phone.image}" class="card-img-top p-5" alt="..." >
                 <div class="card-body">
                 <h4 class="card-title">${phone.phone_name}</h4>
@@ -36,7 +42,24 @@ const showPhoneDetails = phones =>{
         </div>
         `;
         parent.appendChild(div);
-    }   
+    });
+
+    const messageTwo = document.getElementById('error2');
+    messageTwo.innerText = '';
+
+    console.log(parent.innerHTML)
+
+    console.log(parent)
+
+    if (parent.innerHTML == '') {
+        messageTwo.innerText = "No Result Found";
+        messageTwo.style.display = 'block';
+    }
+    else {
+        messageTwo.style.display = 'none';
+    }
+
+      
 }
 
 const detailes=(info)=>{
@@ -50,7 +73,7 @@ const setDetailes = info => {
     document.getElementById('main1').innerHTML = `
     <div id="device-details" class="custom-width mx-auto mb-5">
     <div class="card">
-    <img src="${info.image}" class="card-img-top py-5 mx-auto" alt="..." style="width: 40%;">
+    <img src="${info.image}" class="card-img-top mx-auto" alt="..." style="width: 40%;">
     <div class="card-spacing">
         <h4 class="card-title">${info.name}</h4>
     </div>
