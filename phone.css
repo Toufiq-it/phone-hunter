@@ -1,0 +1,16 @@
+.card-spacing{
+    padding: 0% 5% 0% 5%;
+}
+
+.custom-width{
+    width: 50%;
+}
+.card{
+    align-items: center;
+}
+
+@media screen and (max-width: 480px){
+    .custom-width{
+        width: 75%;
+    }
+}
